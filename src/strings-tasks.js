@@ -180,10 +180,10 @@ function removeFirstOccurrences(str, value) {
  *   removeLastOccurrences('ABABAB', 'BA') => 'ABAB'.
  */
 function removeLastOccurrences(str, value) {
-  return (
-    str.slice(0, str.lastIndexOf(value)) +
-    str.slice(str.lastIndexOf(value) + value.length)
-  );
+  return str.lastIndexOf(value) !== -1
+    ? str.slice(0, str.lastIndexOf(value)) +
+        str.slice(str.lastIndexOf(value) + value.length)
+    : str;
 }
 
 /**
@@ -199,6 +199,7 @@ function removeLastOccurrences(str, value) {
  *   sumOfCodes() => 0
  */
 function sumOfCodes(str) {
+  if (str === undefined || str === null) return 0;
   let sum = 0;
   for (let i = 0; i < str.length; i += 1) {
     sum += str.charCodeAt(i);
@@ -375,10 +376,9 @@ function findLongestWord(sentence) {
  *   reverseWords('The Quick Brown Fox') => 'ehT kciuQ nworB xoF'
  */
 function reverseWords(str) {
-  return str
-    .split(' ')
-    .map((x) => x.split('').reverse().join(''))
-    .join(' ');
+  const arr = str.split(' ');
+  const world = arr.map((item) => item.split('').reverse().join(''));
+  return world.join(' ');
 }
 
 /**
