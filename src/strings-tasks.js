@@ -161,7 +161,10 @@ function repeatString(str, times) {
  *   removeFirstOccurrences('ABABAB', 'BA') => 'ABAB'.
  */
 function removeFirstOccurrences(str, value) {
-  return str.indexOf(value);
+  const index = str.indexOf(value);
+  const a = str.slice(0, index);
+  const b = str.slice(index + value.length);
+  return index === -1 ? str : a + b;
 }
 
 /**
@@ -177,7 +180,10 @@ function removeFirstOccurrences(str, value) {
  *   removeLastOccurrences('ABABAB', 'BA') => 'ABAB'.
  */
 function removeLastOccurrences(str, value) {
-  return str.lastIndexOf(value);
+  return (
+    str.slice(0, str.lastIndexOf(value)) +
+    str.slice(str.lastIndexOf(value) + value.length)
+  );
 }
 
 /**
@@ -244,7 +250,9 @@ function endsWith(str, substr) {
  *   formatTime(0, 0) => "00:00"
  */
 function formatTime(minutes, seconds) {
-  return minutes.toString().padStart(2, '0') + ':' + seconds.toString().padStart(2, '0');
+  return `${minutes.toString().padStart(2, '0')}:${seconds
+    .toString()
+    .padStart(2, '0')}`;
 }
 
 /**
